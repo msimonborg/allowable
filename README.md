@@ -74,6 +74,12 @@ params.forbid('one' => 'one').to_h # => { "two" => "two" }
 
 If your custom `Hash`-like class implements `#delete` and the `#[]` finder, you can `include Allowable` to mix in the methods.
 
+```ruby
+class MyHash
+  include Allowable
+end
+```
+
 ## Platform support
 
 This gem should work with Ruby >= 2.0.0, however at the moment it is only tested for Ruby >= 2.2.2
