@@ -1,5 +1,6 @@
-require "allowable/version"
+# frozen_string_literal: true
 
-module Allowable
-  # Your code goes here...
-end
+require 'allowable/version'
+require 'allowable/allowable'
+require 'allowable/core_ext/hash'
+require 'allowable/railtie' if defined? Rails

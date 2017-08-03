@@ -1,0 +1,19 @@
+AllCops:
+  TargetRubyVersion: 2.4
+
+Metrics/BlockLength:
+  Exclude:
+    - 'allowable.gemspec'
+    - 'spec/**/*'
+    - 'Rakefile'
+
+Metrics/LineLength:
+  Max: 80
+  Exclude:
+    - 'spec/**/*'
+    - 'allowable.gemspec'
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': '[]'
+    '%w': '[]'

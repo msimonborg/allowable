@@ -1,8 +1,10 @@
 # Allowable
+[![Gem Version](https://badge.fury.io/rb/allowable.svg)](https://badge.fury.io/rb/allowable)
+[![Code Climate](https://codeclimate.com/github/msimonborg/allowable/badges/gpa.svg)](https://codeclimate.com/github/msimonborg/allowable)
+[![Build Status](https://travis-ci.org/msimonborg/allowable.svg?branch=master)](https://travis-ci.org/msimonborg/allowable)
+[![Coverage Status](https://coveralls.io/repos/github/msimonborg/allowable/badge.svg?branch=master)](https://coveralls.io/github/msimonborg/allowable?branch=master)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/allowable`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Filter hashes by setting  allowed or forbidden values for specific keys.
 
 ## Installation
 
@@ -21,8 +23,69 @@ Or install it yourself as:
     $ gem install allowable
 
 ## Usage
+The gem will add four methods to `Hash`: `#allow`, `#allow!`, `#forbid`, and `#forbid!`
 
-TODO: Write usage instructions here
+```ruby
+hash = { one: 'one', two: 'two' }
+
+hash.forbid(one: 'one') # => { two: 'two' }
+
+hash.allow(one: 'two') # => { two: 'two' }
+
+hash.allow(one: ['one', 'two']) # => { one: 'one', two: 'two' }
+
+hash.forbid(one: ['one', 'two']) # => { two: 'two' }
+
+hash.allow!(one: 'two') # => { two: 'two' }
+
+hash.forbid!(two: 'two') # => {}
+
+hash # => {}
+```
+
+#### Type sensitive for `Hash`
+
+```ruby
+hash = { 'one' => 'one', 'two' => 'two' }
+
+hash.forbid(one: 'one') # => { "one" => "one", "two" => "two" }
+
+hash.forbid('one' => 'one') # => { "two" => "two" }
+```
+
+## With Rails and strong parameters
+
+When added to the `Gemfile` in a Rails project, `ActionController::Parameters` will automatically receive these methods so you can use them with your `strong_parameters`:
+
+```ruby
+def user_params
+  params.require(:user).permit(:email, :password, :role).forbid(role: ['sys_admin', 'owner'])
+end
+```
+
+#### Type insensitive for `HashWithIndifferentAccess`
+```ruby
+params = ActionController::Parameters.new('one' => 'one', 'two' => 'two').permit(:one, :two)
+
+params.forbid(one: 'one').to_h # => { "two" => "two" }
+
+params.forbid('one' => 'one').to_h # => { "two" => "two" }
+```
+
+If your custom `Hash`-like class implements `#delete` and the `#[]` finder, you can `include Allowable` to mix in the methods.
+
+## Platform support
+
+This gem should work with Ruby >= 2.0.0, however at the moment it is only tested for Ruby >= 2.2.2
+
+Tested against:
+* MRI 2.2.2
+* MRI 2.3.0
+* MRI 2.3.4
+* MRI 2.4.1
+* JRuby 9.1.6.0
+* JRuby HEAD
+* MRI HEAD
 
 ## Development
 
@@ -32,10 +95,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/allowable.
+Bug reports and pull requests are welcome on GitHub at https://github.com/msimonborg/allowable.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
