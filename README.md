@@ -82,7 +82,9 @@ end
 
 ## Platform support
 
-This gem should work with Ruby >= 2.0.0, however at the moment it is only tested for Ruby >= 2.2.2
+The core module should work with all rubies, however at the moment it is only tested for MRI Ruby >= 2.2.2 and JRuby 9.1.6.0
+
+The Rails plugin is currently being tested only with Rails 5.1.2. Rails >= 4.2.0 should not experience any issues.
 
 Tested against:
 * MRI 2.2.2
