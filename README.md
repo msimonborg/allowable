@@ -41,6 +41,10 @@ hash.allow!(one: 'two') # => { two: 'two' }
 hash.forbid!(two: 'two') # => {}
 
 hash # => {}
+
+hash.merge(one: ['one', 1]) # => { one: ["one", 1], two: "two" }
+
+hash.merge(one: ['one', 1]).forbid(one: ['one', 1]) # => { two: "two" }
 ```
 
 #### Type sensitive for `Hash`

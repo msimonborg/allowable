@@ -43,6 +43,14 @@ describe Allowable::Forbid do
       ).to eq('hi' => 'hi')
     end
 
+    it 'it can match when the hash value is an array' do
+      symbol_hash = { hi: %w[hi hey], hello: 'hello' }
+      string_hash = { 'hi' => %w[hi hey], 'hello' => 'hello' }
+
+      expect(symbol_hash.forbid(hi: %w[hi hey])).to eq(hello: 'hello')
+      expect(string_hash.forbid('hi' => %w[hi hey])).to eq('hello' => 'hello')
+    end
+
     it 'does not mutate the original object' do
       expect(symbol_hash.forbid(hi: 'bye', hello: 'hello')).to eq(hi: 'hi')
       expect(symbol_hash).to eq(hi: 'hi', hello: 'hello')

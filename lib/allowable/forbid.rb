@@ -9,7 +9,7 @@ module Allowable
 
     def forbid!(filters = {})
       filters.each do |key, val|
-        delete(key) if Array(val).include?(self[key])
+        delete(key) if Array(val).include?(self[key]) || val == self[key]
       end
       self
     end

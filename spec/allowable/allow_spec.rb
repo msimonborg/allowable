@@ -20,11 +20,11 @@ describe Allowable::Allow do
 
   context '#allow' do
     it 'only allows the named keys if they have the specified value' do
-      expect(symbol_hash.allow(hi: 'hi', hello: 'goodbye')).to eq(hi: 'hi')
-      expect(string_hash.allow(hi: 'hi', hello: 'goodbye')).to_not eq('hi' => 'hi')
+      expect(symbol_hash.allow(hello: 'goodbye')).to eq(hi: 'hi')
+      expect(string_hash.allow(hello: 'goodbye')).to_not eq('hi' => 'hi')
 
-      expect(symbol_hash.allow('hi' => 'hi', 'hello' => 'goodbye')).to_not eq(hi: 'hi')
-      expect(string_hash.allow('hi' => 'hi', 'hello' => 'goodbye')).to eq('hi' => 'hi')
+      expect(symbol_hash.allow('hello' => 'goodbye')).to_not eq(hi: 'hi')
+      expect(string_hash.allow('hello' => 'goodbye')).to eq('hi' => 'hi')
     end
 
     it 'works with arrays of values' do
@@ -41,6 +41,14 @@ describe Allowable::Allow do
       expect(
         string_hash.allow('hi' => %w[hi hey], 'hello' => %w[bye goodbye])
       ).to eq('hi' => 'hi')
+    end
+
+    it 'it can match when the hash value is an array' do
+      symbol_hash = { hi: %w[hi hey], hello: 'hello' }
+      string_hash = { 'hi' => %w[hi hey], 'hello' => 'hello' }
+
+      expect(symbol_hash.allow(hi: %w[hi hey])).to eq symbol_hash
+      expect(string_hash.allow('hi' => %w[hi hey])).to eq string_hash
     end
 
     it 'does not mutate the original object' do
