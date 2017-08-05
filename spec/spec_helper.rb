@@ -9,8 +9,12 @@ SimpleCov.formatters = [
 
 SimpleCov.start
 
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../dummy/config/environment', __FILE__)
+require 'rails'
+
+if Rails::VERSION::MAJOR >= 5
+  ENV['RAILS_ENV'] ||= 'test'
+  require File.expand_path('../rails/dummy/config/environment', __FILE__)
+end
 
 require 'allowable'
 

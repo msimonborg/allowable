@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
-ActiveSupport.run_load_hooks(:action_controller, ActionController::Base)
+require 'action_controller'
+require 'strong_parameters' if Rails::VERSION::MAJOR == 3
 
 describe ActionController::Parameters do
-  it 'includes Allowable' do
-    expect(ActionController::Parameters.include?(Allowable)).to be true
+  if Rails::VERSION::MAJOR >= 5
+    ActiveSupport.run_load_hooks(:action_controller, ActionController::Base)
+
+    it 'includes Allowable' do
+      expect(ActionController::Parameters.include?(Allowable)).to be true
+    end
   end
 
   let(:params) do
@@ -12,6 +17,10 @@ describe ActionController::Parameters do
   end
 
   context '#allow' do
+    it 'returns an instance of ActionController::Parameters' do
+      expect(params.allow).to be_a ActionController::Parameters
+    end
+
     it 'only allows the named keys if they have the specified value' do
       expect(params.allow(hi: 'hi', hello: 'goodbye').to_h).to eq('hi' => 'hi')
     end
@@ -29,6 +38,10 @@ describe ActionController::Parameters do
   end
 
   context '#allow!' do
+    it 'returns an instance of ActionController::Parameters' do
+      expect(params.allow).to be_a ActionController::Parameters
+    end
+
     it 'only allows the named keys if they have the specified value' do
       expect(params.allow!(hi: 'hi', hello: 'goodbye').to_h).to eq('hi' => 'hi')
     end
@@ -46,6 +59,10 @@ describe ActionController::Parameters do
   end
 
   context '#forbid' do
+    it 'returns an instance of ActionController::Parameters' do
+      expect(params.allow).to be_a ActionController::Parameters
+    end
+
     it 'only forbids the named keys if they have the specified value' do
       expect(params.forbid(hi: 'bye', hello: 'hello').to_h).to eq('hi' => 'hi')
     end
@@ -63,6 +80,10 @@ describe ActionController::Parameters do
   end
 
   context '#forbid!' do
+    it 'returns an instance of ActionController::Parameters' do
+      expect(params.allow).to be_a ActionController::Parameters
+    end
+
     it 'only forbids the named keys if they have the specified value' do
       expect(params.forbid!(hi: 'bye', hello: 'hello').to_h).to eq('hi' => 'hi')
     end
