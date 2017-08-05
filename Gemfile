@@ -6,7 +6,8 @@ source 'https://rubygems.org'
 gemspec
 
 group :test, :development do
-  gem 'coveralls',   '>= 0.8.0', require: false
+  gem 'appraisal',   '~> 2.2'
+  gem 'coveralls',   '>= 0.7.0', require: false
   gem 'pry',         '>= 0.10.0'
   gem 'rake',        '>= 10.0'
   gem 'rspec-rails', '>= 3.6.0'

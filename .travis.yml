@@ -21,6 +21,11 @@ before_install:
   - gem install bundler
   - gem update bundler
 
+gemfile:
+  - gemfiles/rails_3.gemfile
+  - gemfiles/rails_4.gemfile
+  - gemfiles/rails_5.gemfile
+
 env:
   global:
     - JRUBY_OPTS="$JRUBY_OPTS --debug"

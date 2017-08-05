@@ -1,5 +1,15 @@
 AllCops:
   TargetRubyVersion: 2.4
+  Exclude:
+    - 'gemfiles/**/*'
+    - 'vendor/**/*'
+
+Lint/HandleExceptions:
+  Exclude:
+    - 'lib/allowable.rb'
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
 
 Metrics/BlockLength:
   Exclude:

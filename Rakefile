@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'rubygems'
+require 'bundler/setup'
+
 require 'bundler/gem_tasks'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
@@ -19,4 +22,4 @@ Yardstick::Rake::Verify.new do |verify|
   verify.require_exact_threshold = false
 end
 
-task default: %i[spec rubocop verify_measurements]
+task default: [:spec, :rubocop, :verify_measurements]
