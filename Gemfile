@@ -11,7 +11,7 @@ group :test, :development do
   gem 'pry',         '>= 0.10.0'
   gem 'rake',        '>= 10.0'
   gem 'rspec-rails', '>= 3.6.0'
-  gem 'rubocop',     '>= 0.49.0'
+  gem 'rubocop',     '>= 0.41'
   gem 'simplecov',   '>= 0.14.0', require: false
   gem 'yardstick',   '>= 0.9.0'
 end

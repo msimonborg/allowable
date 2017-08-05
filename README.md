@@ -59,7 +59,9 @@ hash.forbid('one' => 'one') # => { "two" => "two" }
 
 ## With Rails and strong parameters
 
-When added to the `Gemfile` in a Rails project, `ActionController::Parameters` will automatically receive these methods so you can use them with your `strong_parameters`:
+If `ActiveSupport::HashWithIndifferentAccess` is defined it will receive the methods. This automatically makes them available in `ActionController::Parameters` for Rails 4 and 3. Rails 3 requires that you add `gem 'strong_parameters'` to your `Gemfile` in order to use strong parameters.
+
+Starting in Rails 5, `ActionController::Parameters` no longer inherits from `ActiveSupport::HashWithIndifferentAccess`. When `allowable` is added to the `Gemfile` in a Rails 5+ project, load hooks will add the methods directly to `ActionController::Parameters` so you can use them with your strong parameters.
 
 ```ruby
 def user_params
@@ -67,7 +69,7 @@ def user_params
 end
 ```
 
-#### Type insensitive for `HashWithIndifferentAccess`
+#### Type insensitive for `HashWithIndifferentAccess` and `ActionController::Parameters`
 ```ruby
 params = ActionController::Parameters.new('one' => 'one', 'two' => 'two').permit(:one, :two)
 

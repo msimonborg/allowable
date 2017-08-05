@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 appraise 'rails-3' do
   gem 'railties', '~> 3.2'
   gem 'strong_parameters'
