@@ -22,4 +22,4 @@ Yardstick::Rake::Verify.new do |verify|
   verify.require_exact_threshold = false
 end
 
-task default: [:spec, :rubocop, :verify_measurements]
+task default: [:spec, :rubocop]
