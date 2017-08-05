@@ -1,22 +1,8 @@
 # frozen_string_literal: true
 
-describe Allowable::Allow do
+describe Allowable do
   let(:symbol_hash) { { hi: 'hi', hello: 'hello' } }
   let(:string_hash) { { 'hi' => 'hi', 'hello' => 'hello' } }
-
-  context 'when included' do
-    it 'adds #allow and #allow! instance methods' do
-      class AllowTestObject; end
-
-      expect(AllowTestObject.new).not_to respond_to :allow
-      expect(AllowTestObject.new).not_to respond_to :allow!
-
-      AllowTestObject.class_eval { include Allowable::Allow }
-
-      expect(AllowTestObject.new).to respond_to :allow
-      expect(AllowTestObject.new).to respond_to :allow!
-    end
-  end
 
   context '#allow' do
     it 'only allows the named keys if they have the specified value' do

@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'allowable/allow'
-require 'allowable/forbid'
-
 # Filter hashes by setting  allowed or forbidden values for specific keys.
 #
 #     hash = { one: 'one', two: 'two' }
@@ -21,6 +18,25 @@ require 'allowable/forbid'
 #
 #     hash # => {}
 module Allowable
-  include Forbid
-  include Allow
+  def allow(filters = {})
+    dup.allow!(filters)
+  end
+
+  def allow!(filters = {})
+    filters.each do |key, val|
+      delete(key) unless Array(val).include?(self[key]) || val == self[key]
+    end
+    self
+  end
+
+  def forbid(filters = {})
+    dup.forbid!(filters)
+  end
+
+  def forbid!(filters = {})
+    filters.each do |key, val|
+      delete(key) if Array(val).include?(self[key]) || val == self[key]
+    end
+    self
+  end
 end

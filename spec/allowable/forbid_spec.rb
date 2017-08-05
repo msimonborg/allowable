@@ -1,22 +1,8 @@
 # frozen_string_literal: true
 
-describe Allowable::Forbid do
+describe Allowable do
   let(:symbol_hash) { { hi: 'hi', hello: 'hello' } }
   let(:string_hash) { { 'hi' => 'hi', 'hello' => 'hello' } }
-
-  context 'when included' do
-    it 'adds #forbid and #forbid! instance methods' do
-      class ForbidTestObject; end
-
-      expect(ForbidTestObject.new).not_to respond_to :forbid
-      expect(ForbidTestObject.new).not_to respond_to :forbid!
-
-      ForbidTestObject.class_eval { include Allowable::Forbid }
-
-      expect(ForbidTestObject.new).to respond_to :forbid
-      expect(ForbidTestObject.new).to respond_to :forbid!
-    end
-  end
 
   context '#forbid' do
     it 'only forbids the named keys if they have the specified value' do

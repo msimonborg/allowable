@@ -9,7 +9,7 @@ SimpleCov.formatters = [
 
 SimpleCov.start
 
-require 'rails'
+require 'rails/version'
 
 if Rails::VERSION::MAJOR >= 5
   ENV['RAILS_ENV'] ||= 'test'
