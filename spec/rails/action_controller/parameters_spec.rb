@@ -22,18 +22,18 @@ describe ActionController::Parameters do
     end
 
     it 'only allows the named keys if they have the specified value' do
-      expect(params.allow(hi: 'hi', hello: 'goodbye').to_h).to eq('hi' => 'hi')
+      expect(params.allow(hi: 'hi', hello: 'goodbye').to_hash).to eq('hi' => 'hi')
     end
 
     it 'works with arrays of values' do
       expect(
-        params.allow(hi: %w[hi hey], hello: %w[bye goodbye]).to_h
+        params.allow(hi: %w[hi hey], hello: %w[bye goodbye]).to_hash
       ).to eq('hi' => 'hi')
     end
 
     it 'does not mutate the original object' do
-      expect(params.allow(hi: 'hi', hello: 'goodbye').to_h).to eq('hi' => 'hi')
-      expect(params.to_h).to eq('hi' => 'hi', 'hello' => 'hello')
+      expect(params.allow(hi: 'hi', hello: 'goodbye').to_hash).to eq('hi' => 'hi')
+      expect(params.to_hash).to eq('hi' => 'hi', 'hello' => 'hello')
     end
   end
 
@@ -43,18 +43,18 @@ describe ActionController::Parameters do
     end
 
     it 'only allows the named keys if they have the specified value' do
-      expect(params.allow!(hi: 'hi', hello: 'goodbye').to_h).to eq('hi' => 'hi')
+      expect(params.allow!(hi: 'hi', hello: 'goodbye').to_hash).to eq('hi' => 'hi')
     end
 
     it 'works with arrays of values' do
       expect(
-        params.allow!(hi: %w[hi hey], hello: %w[bye goodbye]).to_h
+        params.allow!(hi: %w[hi hey], hello: %w[bye goodbye]).to_hash
       ).to eq('hi' => 'hi')
     end
 
     it 'does mutate the original object' do
-      expect(params.allow!(hi: 'hi', hello: 'goodbye').to_h).to eq('hi' => 'hi')
-      expect(params.to_h).to eq('hi' => 'hi')
+      expect(params.allow!(hi: 'hi', hello: 'goodbye').to_hash).to eq('hi' => 'hi')
+      expect(params.to_hash).to eq('hi' => 'hi')
     end
   end
 
@@ -64,18 +64,18 @@ describe ActionController::Parameters do
     end
 
     it 'only forbids the named keys if they have the specified value' do
-      expect(params.forbid(hi: 'bye', hello: 'hello').to_h).to eq('hi' => 'hi')
+      expect(params.forbid(hi: 'bye', hello: 'hello').to_hash).to eq('hi' => 'hi')
     end
 
     it 'works with arrays of values' do
       expect(
-        params.forbid(hi: %w[bye byebye], hello: %w[hello hey]).to_h
+        params.forbid(hi: %w[bye byebye], hello: %w[hello hey]).to_hash
       ).to eq('hi' => 'hi')
     end
 
     it 'does not mutate the original object' do
-      expect(params.forbid(hi: 'bye', hello: 'hello').to_h).to eq('hi' => 'hi')
-      expect(params.to_h).to eq('hi' => 'hi', 'hello' => 'hello')
+      expect(params.forbid(hi: 'bye', hello: 'hello').to_hash).to eq('hi' => 'hi')
+      expect(params.to_hash).to eq('hi' => 'hi', 'hello' => 'hello')
     end
   end
 
@@ -85,18 +85,18 @@ describe ActionController::Parameters do
     end
 
     it 'only forbids the named keys if they have the specified value' do
-      expect(params.forbid!(hi: 'bye', hello: 'hello').to_h).to eq('hi' => 'hi')
+      expect(params.forbid!(hi: 'bye', hello: 'hello').to_hash).to eq('hi' => 'hi')
     end
 
     it 'works with arrays of values' do
       expect(
-        params.forbid!(hi: %w[bye byebye], hello: %w[hello hey]).to_h
+        params.forbid!(hi: %w[bye byebye], hello: %w[hello hey]).to_hash
       ).to eq('hi' => 'hi')
     end
 
     it 'does mutate the original object' do
-      expect(params.forbid!(hi: 'bye', hello: 'hello').to_h).to eq('hi' => 'hi')
-      expect(params.to_h).to eq('hi' => 'hi')
+      expect(params.forbid!(hi: 'bye', hello: 'hello').to_hash).to eq('hi' => 'hi')
+      expect(params.to_hash).to eq('hi' => 'hi')
     end
   end
 end
