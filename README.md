@@ -88,7 +88,7 @@ end
 
 ## Platform support
 
-The core module should work with all rubies, however at the moment it is only tested for MRI Ruby >= 1.9.3 and JRuby 9.1.6.0
+The core module should work with all rubies. It is tested for MRI Ruby >= 1.9.3 and JRuby 9.1.6.0
 
 Rails compatibility is currently being tested only for versions ~> 3.2, ~> 4.2, and ~> 5.1.
 

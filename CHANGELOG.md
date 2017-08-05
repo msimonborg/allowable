@@ -2,7 +2,7 @@
 1.1.0
 -----
 * Include in `ActiveSupport::HashWithIndifferentAccess`, which also expands Rails compatibility down to version 3.2.
-* Expand testing with `Appraisal` gem. Test against Rails 3, 4, and 5, and Ruby >= 1.9.3
+* Expand testing with `Appraisal` gem. Test against Rails 3.2, 4.2, and 5.1, and Ruby >= 1.9.3
 * Consolidate all methods into `Allowable` module, remove `Allowable::Allow` and `Allowable::Forbid`
 
 1.0.2
