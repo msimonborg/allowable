@@ -1,4 +1,9 @@
 # Changelog
+1.1.0
+-----
+* Include in `ActiveSupport::HashWithIndifferentAccess`, which also expands Rails compatibility down to version 3.2.
+* Expand testing with `Appraisal` gem. Test against Rails 3, 4, and 5, and Ruby >= 2.0.0
+
 1.0.2
 -----
 * Match array values e.g. `{ key: ['val_one', 'val_two'] }.forbid(key: ['val_one', 'val_two']) # => {}` TODO: Slows down benchmarked performance of `#allow`, need to figure out why
