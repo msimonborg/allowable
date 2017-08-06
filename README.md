@@ -106,7 +106,12 @@ Tested against:
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. The manual steps are:
+
+    $ bundle install
+    $ bundle exec appraisal install
+
+Run `bin/console` for an IRB session with all dependencies loaded.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
@@ -114,6 +119,15 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/msimonborg/allowable.
 
+Steps to contribute
+
+* Write new tests that describe the desired behavior, or catch regressions. PRs won't be approved without test coverage
+* Write your code
+* Run build task with `bundle exec rake`, make sure all tests pass and there are no Rubocop issues
+* Run `bundle exec appraisal rake` to run tests against different Rails versions
+* Add documentation to README.md if appropriate and necessary
+* Commit with a descriptive message
+* Submit a PR
 
 ## License
 
