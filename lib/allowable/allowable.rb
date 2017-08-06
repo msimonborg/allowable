@@ -18,13 +18,17 @@
 #
 #     hash # => {}
 module Allowable
+  def self.filter_match?(obj, key, val)
+    Array(val).include?(obj[key]) || val == obj[key]
+  end
+
   def allow(filters = {})
     dup.allow!(filters)
   end
 
   def allow!(filters = {})
     filters.each do |key, val|
-      delete(key) unless Array(val).include?(self[key]) || val == self[key]
+      delete(key) unless Allowable.filter_match?(self, key, val)
     end
     self
   end
@@ -35,7 +39,7 @@ module Allowable
 
   def forbid!(filters = {})
     filters.each do |key, val|
-      delete(key) if Array(val).include?(self[key]) || val == self[key]
+      delete(key) if Allowable.filter_match?(self, key, val)
     end
     self
   end
