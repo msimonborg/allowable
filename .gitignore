@@ -11,3 +11,4 @@
 /.idea/
 /gemfiles/*.gemfile.lock
 /gemfiles/vendor/**/*
+/.vscode/
