@@ -17,7 +17,7 @@ allow_filters = {}
   allow_filters[n] = n + 1
 end
 
-forbid_filters = hash
+forbid_filters = hash.dup
 
 params = ActionController::Parameters.new(hash)
 
