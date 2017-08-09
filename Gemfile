@@ -6,12 +6,13 @@ source 'https://rubygems.org'
 gemspec
 
 group :test, :development do
-  gem 'appraisal',   '~> 2.2'
-  gem 'coveralls',   '>= 0.7.0', require: false
-  gem 'pry',         '>= 0.10.0'
-  gem 'rake',        '>= 10.0'
-  gem 'rspec-rails', '>= 3.6.0'
-  gem 'rubocop',     '>= 0.41'
-  gem 'simplecov',   '>= 0.14.0', require: false
-  gem 'yardstick',   '>= 0.9.0'
+  gem 'appraisal',     '~> 2.2'
+  gem 'benchmark-ips', '~> 2.0', '>= 2.7.2'
+  gem 'coveralls',     '>= 0.7.0', require: false
+  gem 'pry',           '>= 0.10.0'
+  gem 'rake',          '>= 10.0'
+  gem 'rspec-rails',   '>= 3.6.0'
+  gem 'rubocop',       '>= 0.41'
+  gem 'simplecov',     '>= 0.14.0', require: false
+  gem 'yardstick',     '>= 0.9.0'
 end
