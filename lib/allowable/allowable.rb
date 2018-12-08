@@ -28,7 +28,11 @@ module Allowable
 
   def allow!(filters = {})
     filters.each do |key, val|
-      delete(key) unless Allowable.filter_match?(self, key, val)
+      if val.is_a?(Hash) && self[key].is_a?(Hash)
+        self[key].allow!(val)
+      else
+        delete(key) unless Allowable.filter_match?(self, key, val)
+      end
     end
     self
   end

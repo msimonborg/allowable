@@ -3,6 +3,7 @@
 describe Allowable do
   let(:symbol_hash) { { hi: 'hi', hello: 'hello' } }
   let(:string_hash) { { 'hi' => 'hi', 'hello' => 'hello' } }
+  let(:nested_hash) { { hi: { hey: 'ho' } } }
 
   context '#allow' do
     it 'only allows the named keys if they have the specified value' do
@@ -61,6 +62,11 @@ describe Allowable do
     it 'does mutate the original object' do
       expect(symbol_hash.allow!(hi: 'hi', hello: 'goodbye')).to eq(hi: 'hi')
       expect(symbol_hash).to eq(hi: 'hi')
+    end
+
+    it 'validates nested hashes' do
+      expect(nested_hash.allow!(hi: { hey: 'ho' })).to eq(hi: { hey: 'ho' })
+      expect(nested_hash.allow!(hi: { hey: 'oh hi' })).to eq(hi: {})
     end
   end
 end
