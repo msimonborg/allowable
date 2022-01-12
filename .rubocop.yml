@@ -23,7 +23,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'Rakefile'
 
-Metrics/Layout:
+Metrics/LineLength:
   Max: 80
   Exclude:
     - 'spec/**/*'
