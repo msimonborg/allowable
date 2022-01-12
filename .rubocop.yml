@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.7
   NewCops: enable
   Exclude:
     - 'gemfiles/**/*'
@@ -23,7 +23,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'Rakefile'
 
-Metrics/LineLength:
+Layout:
   Max: 80
   Exclude:
     - 'spec/**/*'

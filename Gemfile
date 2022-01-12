@@ -10,7 +10,7 @@ group :test, :development do
   gem 'benchmark-ips', '~> 2.0', '>= 2.7.2'
   gem 'coveralls',     '>= 0.7.0', require: false
   gem 'pry',           '>= 0.10.0'
-  gem 'rake',          '>= 12.3.3'
+  gem 'rake',          '>= 13'
   gem 'rspec-rails',   '>= 3.6.0'
   gem 'rubocop',       require: false
   gem 'rubocop-rake',  require: false

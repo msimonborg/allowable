@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version               = Allowable::VERSION
   spec.authors               = ['M. Simon Borg']
   spec.email                 = ['msimonborg@gmail.com']
-  spec.required_ruby_version = '>= 2.4'
+  spec.required_ruby_version = '>= 2.7'
 
   spec.summary       = 'Filter hash keys based on allowed and forbidden values.'
   spec.description   = 'Filter hash keys based on allowed and forbidden values.'
@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '>= 1.14'
   spec.add_development_dependency 'rake', '>= 12.3.3'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end
