@@ -42,6 +42,12 @@ describe Allowable do
       expect(symbol_hash.allow(hi: 'hi', hello: 'goodbye')).to eq(hi: 'hi')
       expect(symbol_hash).to eq(hi: 'hi', hello: 'hello')
     end
+
+    it 'validates nested hashes' do
+      expect(nested_hash.allow(hi: { hey: 'ho' })).to eq(hi: { hey: 'ho' })
+      expect(nested_hash.allow(hi: { hey: 'oh hi' })).to eq({})
+      expect(nested_hash.allow(hi: { hello: 'world' })).to eq({})
+    end
   end
 
   context '#allow!' do
@@ -65,8 +71,9 @@ describe Allowable do
     end
 
     it 'validates nested hashes' do
-      expect(nested_hash.allow!(hi: { hey: 'ho' })).to eq(hi: { hey: 'ho' })
-      expect(nested_hash.allow!(hi: { hey: 'oh hi' })).to eq(hi: {})
+      expect(nested_hash.dup.allow!(hi: { hey: 'ho' })).to eq(hi: { hey: 'ho' })
+      expect(nested_hash.dup.allow!(hi: { hey: 'oh hi' })).to eq({})
+      expect(nested_hash.dup.allow!(hi: { hello: 'world' })).to eq({})
     end
   end
 end

@@ -3,6 +3,7 @@
 describe Allowable do
   let(:symbol_hash) { { hi: 'hi', hello: 'hello' } }
   let(:string_hash) { { 'hi' => 'hi', 'hello' => 'hello' } }
+  let(:nested_hash) { { hi: { hey: 'ho' } } }
 
   context '#forbid' do
     it 'only forbids the named keys if they have the specified value' do
@@ -41,6 +42,12 @@ describe Allowable do
       expect(symbol_hash.forbid(hi: 'bye', hello: 'hello')).to eq(hi: 'hi')
       expect(symbol_hash).to eq(hi: 'hi', hello: 'hello')
     end
+
+    it 'validates nested hashes' do
+      expect(nested_hash.forbid(hi: { hey: 'ho' })).to eq({})
+      expect(nested_hash.forbid(hi: { hey: 'oh hi' })).to eq(hi: { hey: 'ho' })
+      expect(nested_hash.forbid(hi: { hello: 'world' })).to eq(hi: { hey: 'ho' })
+    end
   end
 
   context '#forbid!' do
@@ -61,6 +68,12 @@ describe Allowable do
     it 'does mutate the original object' do
       expect(symbol_hash.forbid!(hi: 'bye', hello: 'hello')).to eq(hi: 'hi')
       expect(symbol_hash).to eq(hi: 'hi')
+    end
+
+    it 'validates nested hashes' do
+      expect(nested_hash.dup.forbid!(hi: { hey: 'ho' })).to eq({})
+      expect(nested_hash.dup.forbid!(hi: { hey: 'oh hi' })).to eq(hi: { hey: 'ho' })
+      expect(nested_hash.dup.forbid!(hi: { hello: 'world' })).to eq(hi: { hey: 'ho' })
     end
   end
 end
