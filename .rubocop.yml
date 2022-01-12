@@ -1,12 +1,18 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
+  NewCops: enable
   Exclude:
     - 'gemfiles/**/*'
     - 'vendor/**/*'
 
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Exclude:
     - 'lib/allowable.rb'
+
+Lint/SendWithMixinArgument:
+  Exclude:
+    - 'lib/allowable.rb'
+    - 'lib/allowable/railtie.rb'
 
 Style/SymbolArray:
   EnforcedStyle: brackets
@@ -17,7 +23,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'Rakefile'
 
-Metrics/LineLength:
+Metrics/Layout:
   Max: 80
   Exclude:
     - 'spec/**/*'

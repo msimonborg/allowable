@@ -13,7 +13,7 @@ require 'rails/version'
 
 if Rails::VERSION::MAJOR >= 5
   ENV['RAILS_ENV'] ||= 'test'
-  require File.expand_path('../rails/dummy/config/environment', __FILE__)
+  require File.expand_path('rails/dummy/config/environment', __dir__)
 end
 
 require 'allowable'

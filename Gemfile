@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in forbidium.gemspec
+# Specify your gem's dependencies in allowable.gemspec
 gemspec
 
 group :test, :development do
@@ -12,7 +12,9 @@ group :test, :development do
   gem 'pry',           '>= 0.10.0'
   gem 'rake',          '>= 10.0'
   gem 'rspec-rails',   '>= 3.6.0'
-  gem 'rubocop',       '>= 0.41'
+  gem 'rubocop',       require: false
+  gem 'rubocop-rake',  require: false
+  gem 'rubocop-rspec', require: false
   gem 'simplecov',     '>= 0.14.0', require: false
   gem 'yardstick',     '>= 0.9.0'
 end

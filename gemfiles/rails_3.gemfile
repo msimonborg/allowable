@@ -7,6 +7,7 @@ gem "strong_parameters"
 
 group :test, :development do
   gem "appraisal", "~> 2.2"
+  gem "benchmark-ips", "~> 2.0", ">= 2.7.2"
   gem "coveralls", ">= 0.7.0", require: false
   gem "pry", ">= 0.10.0"
   gem "rake", ">= 10.0"
