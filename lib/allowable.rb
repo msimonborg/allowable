@@ -6,7 +6,7 @@ require 'allowable/core_ext/hash'
 
 begin
   require 'active_support/core_ext/hash/indifferent_access'
-  ActiveSupport::HashWithIndifferentAccess.send :include, Allowable
+  ActiveSupport::HashWithIndifferentAccess.include Allowable
 rescue LoadError
   # do nothing
 end

@@ -9,11 +9,6 @@ Lint/SuppressedException:
   Exclude:
     - 'lib/allowable.rb'
 
-Lint/SendWithMixinArgument:
-  Exclude:
-    - 'lib/allowable.rb'
-    - 'lib/allowable/railtie.rb'
-
 Style/SymbolArray:
   EnforcedStyle: brackets
 
